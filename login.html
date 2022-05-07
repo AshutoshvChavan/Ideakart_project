@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+<script src="https://kit.fontawesome.com/a53f968ed6.js" crossorigin="anonymous"></script>
+<!-- <link rel="stylesheet" href="loginFiles/loginsignup.css"> -->
+    <title>Ideakart |Login</title>
+    <style>
+        body{
+    padding: 0;
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+}
+#background{
+    margin: auto;
+    width: 100%;
+    height: 950px;
+    background-image: url("bg2.jpg");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.main{
+    padding: 20px;
+    width: 22%;
+    height: auto;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+input{
+    width: 100%;
+    height: 50px;
+    font-size: 18px;
+    border-radius: 10px;
+    margin-top: 10px;
+    border: 1px solid rgb(187, 187, 187);
+    font-weight: 100;
+}
+button{
+    width: 100%;
+    height: 50px;
+    border-radius: 10px;
+    border: none;
+    background-color: rgb(239, 239, 12);
+    font-size: 18px;
+    font-weight: 600;
+    color: white;
+    cursor: pointer;
+}
+button:hover{
+    background-color: #0f8b0f;
+}
+span{
+    color: blue;
+}
+.socialmain{
+    display: flex;
+    width: 100%;
+    height: 50px;
+    border-radius: 10px;
+    border: none;
+    background-color: #F6F7F8;
+    font-size: 18px;
+    font-weight: 600;
+    color: black;
+    margin-top: 10px;
+}
+.logo, .para{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+h1{
+    color: #343538;
+}
+.para{
+    width: 80%;
+    color: #343538;
+}
+.logo{
+    margin-left: 10px;
+}
+.center{
+    text-align: center;
+}
+.tnc{
+    font-size: 12px;
+}
+hr{
+    border: none;
+    height: 0.5px;
+    background-color: rgb(206, 206, 206);
+    margin-top: 20px;
+}
+img{
+    width: 30px;
+    height: 30px;
+}
+.notation{
+    margin-bottom: -5px;
+    font-size: 14px;
+}
+a{
+    font-weight: 600;
+    text-decoration: none;
+    color: blue;
+}
+#alert{
+    text-align: center;
+}
+
+
+    </style>
+</head>
+<style>
+#logo{
+    height: 25px;
+    width: 25px;
+}
+</style>
+<body>
+    <div id="background">
+        <div class="main">
+            <a style="color: black;" href="index.html"><i class="fa-solid fa-xmark"></i></a>
+            <h1>Log in</h1>
+            <input id="loginemail" type="email" placeholder="Email"> <br>
+            <input id="loginpassword" type="password" placeholder="Password">
+            <p>Forgot password? <span>Reset it</span></p>
+            <button id="correctuser">Log in</button>
+            <p id="alert">...</p>
+
+            <hr>
+
+            <div class="socialmain">
+                <div class="logo"><img id="logo" src="https://png.pngtree.com/png-clipart/20210216/ourmid/pngtree-phone-icon-in-circle-black-png-image_5994540.png" alt=""></div>
+                <div class="para"><p>Continue with Phone</p></div>
+            </div>
+            <div class="socialmain">
+                <div class="logo"><img id="logo" src="https://upload.wikimedia.org/wikipedia/commons/4/44/Facebook_Logo.png" alt=""></div>
+                <div class="para"><p>Continue with Facebook</p></div>
+            </div>
+            <div class="socialmain">
+                <div class="logo"><img id="logo" src="https://cdn.pixabay.com/photo/2017/01/19/09/11/logo-google-1991840__340.png" alt=""></div>
+                <div class="para"><p>Continue with Google</p></div>
+            </div>
+
+
+            <hr>
+            <p class="center">Don't have an account?</p>
+            <p class="center"><a href="signup.html">Sign up</a></p>
+        </div>
+    </div>
+</body>
+</html>
+
+
+<script>
+
+    document.querySelector("button").addEventListener("click", mylogin)
+    var regusers = JSON.parse(localStorage.getItem("regdata")) || []
+
+    function mylogin(){
+        var email = document.querySelector("#loginemail").value
+        var password = document.querySelector("#loginpassword").value
+
+        for(var i=0; i<regusers.length; i++){
+            if(regusers[i].regemail == email && regusers[i].regpass == password){
+                var alt = document.getElementById("alert")
+                alt.innerText = "Login Success"
+                alt.style.color = "green"
+                document.getElementById("correctuser").innerText = "Redirecting..."
+                window.location.href = "index.html"
+                break;
+            }else{
+                var alt = document.getElementById("alert")
+                alt.innerText = "Login failed: Wrong credentials."
+                alt.style.color = "red"
+                document.querySelector("#loginemail").value = ""
+                document.querySelector("#loginpassword").value = ""
+            }
+        }
+    }
+</script>
